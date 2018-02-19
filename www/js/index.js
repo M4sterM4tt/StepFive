@@ -438,19 +438,19 @@ function render() {
 					
 					if (playerPositionX[loopTwo] > wallPositionX[loop]) {
 						playerPositionX[loopTwo] = (canvas.width/20)*(Math.ceil(playerPositionX[loopTwo]/(canvas.width/20)))
-						playerVelocityX = (-1/4)*playerVelocityX;
+						playerVelocityX = 0;
 					}
 					else if (playerPositionX[loopTwo] < wallPositionX[loop]) {
 						playerPositionX[loopTwo] =  (canvas.width/20)*(Math.floor(playerPositionX[loopTwo]/(canvas.width/20)))
-						playerVelocityX = (-1/4)*playerVelocityX;
+						playerVelocityX = 0;
 					}
 					if (playerPositionY[loopTwo] > wallPositionY[loop]) {
 						playerPositionY[loopTwo] = (canvas.height/10)*(Math.ceil(playerPositionY[loopTwo]/(canvas.height/10)))
-						playerVelocityY = (-1/4)*playerVelocityY;
+						playerVelocityY = 0;
 					}
 					else if (playerPositionY[loopTwo] > wallPositionY[loop]) {
 						playerPositionY[loopTwo] = (canvas.height/10)*(Math.floor(playerPositionY[loopTwo]/(canvas.height/10)))
-						playerVelocityY = (-1/4)*playerVelocityY;
+						playerVelocityY = 0;
 						
 						
 					}
