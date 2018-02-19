@@ -461,8 +461,8 @@ function render() {
 			for(loopTwo = 0; loopTwo < wallType.length; loopTwo+=1) {
 				if (wallType[loopTwo] >= 0 && wallType[loopTwo] <= 9 && loopTwo != loop) {
 					if ( (wallPositionX[loopTwo] < wallPositionX[loop] + canvas.width/20 && wallPositionX[loopTwo] > wallPositionX[loop] - canvas.width/20) && (wallPositionY[loopTwo] < wallPositionY[loop] + canvas.height/10 && wallPositionY[loopTwo] > wallPositionY[loop] - canvas.height/10) ) {
-						wallPositionX[loop] = wallPositionX[loop] - (1/2)*wallVelocityX[loop];
-						wallPositionY[loop] = wallPositionY[loop] - (1/2)*wallVelocityY[loop];
+						wallPositionX[loop] = wallPositionX[loop] - (1/4)*wallVelocityX[loop];
+						wallPositionY[loop] = wallPositionY[loop] - (1/4)*wallVelocityY[loop];
 						wallVelocityX[loop] = (-1/4)*wallVelocityX[loop];
 						wallVelocityY[loop] = (-1/4)*wallVelocityY[loop];
 					}
@@ -534,7 +534,7 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			// IF Player/Goal hits Wall.		
 			for(loopFour = 0; loopFour < playerPositionX.length; loopFour+=1) {
 				if ( (playerPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && playerPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (playerPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && playerPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
-					wallPositionX[loopThree] = (canvas.width/20)*(Math.floor(wallPositionX[loopThree]/(canvas.width/20))) + (canvas.width/40)*(((wallPositionX[loopThree] - playerPositionX[loopFour])/(Math.abs(wallPositionX[loopThree] - playerPositionX[loopFour]))));
+					wallPositionX[loopThree] = (canvas.width/20)*(Math.floor(wallPositionX[loopThree]/(canvas.width/20))) + (canvas.width/20)*(((wallPositionX[loopThree] - playerPositionX[loopFour])/(Math.abs(wallPositionX[loopThree] - playerPositionX[loopFour]))));
 				}		
 			}
 			
@@ -542,7 +542,7 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			// IF Enemy hits Wall.
 			for(loopFour = 0; loopFour < enemyType.length; loopFour+=1) {		
 				if ( (enemyPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && enemyPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (enemyPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && enemyPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) && (enemyType[loopFour] == 2 || enemyType[loopFour] == 3)) {
-					wallPositionX[loopThree] = (canvas.width/20)*(Math.floor(wallPositionX[loopThree]/(canvas.width/20))) + (canvas.width/40)*(((wallPositionX[loopThree] - enemyPositionX[loopFour])/(Math.abs(wallPositionX[loopThree] - enemyPositionX[loopFour]))));	
+					wallPositionX[loopThree] = (canvas.width/20)*(Math.floor(wallPositionX[loopThree]/(canvas.width/20))) + (canvas.width/20)*(((wallPositionX[loopThree] - enemyPositionX[loopFour])/(Math.abs(wallPositionX[loopThree] - enemyPositionX[loopFour]))));	
 				}		
 			}
 			
@@ -551,7 +551,7 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
 				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
 					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
-						wallPositionX[loopThree] = (canvas.width/20)*(Math.floor(wallPositionX[loopThree]/(canvas.width/20))) + (canvas.width/40)*(((wallPositionX[loopThree] - wallPositionX[loopFour])/(Math.abs(wallPositionX[loopThree] - wallPositionX[loopFour]))));
+						wallPositionX[loopThree] = (canvas.width/20)*(Math.floor(wallPositionX[loopThree]/(canvas.width/20))) + (canvas.width/20)*(((wallPositionX[loopThree] - wallPositionX[loopFour])/(Math.abs(wallPositionX[loopThree] - wallPositionX[loopFour]))));
 					}
 				}
 			}
@@ -585,7 +585,7 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
 				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
 					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
-						wallPositionY[loopThree] = (canvas.height/20)*(Math.floor(wallPositionY[loopThree]/(canvas.height/20))) + (canvas.height/40)*(((wallPositionY[loopThree] - wallPositionY[loopFour])/(Math.abs(wallPositionY[loopThree] - wallPositionY[loopFour]))));
+						wallPositionY[loopThree] = (canvas.height/10)*(Math.floor(wallPositionY[loopThree]/(canvas.height/10))) + (canvas.height/10)*(((wallPositionY[loopThree] - wallPositionY[loopFour])/(Math.abs(wallPositionY[loopThree] - wallPositionY[loopFour]))));
 					}
 				}
 			}
