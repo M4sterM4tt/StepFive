@@ -416,21 +416,17 @@ function render() {
 			if (wallPositionX[loop] >  canvas.width - (1/20)*canvas.width) {
 				wallPositionX[loop] =  canvas.width - (1/20)*canvas.width;
 				wallVelocityX[loop] =  (-1/4)*wallVelocityX[loop];
-				wallVelocityY[loop] =  (-1/4)*wallVelocityY[loop];
 			}
 			else if (wallPositionX[loop] < 0) {
 				wallPositionX[loop] =  0;
 				wallVelocityX[loop] =  (-1/4)*wallVelocityX[loop];
-				wallVelocityY[loop] =  (-1/4)*wallVelocityY[loop];
 			}
 			if (wallPositionY[loop] >  canvas.height - (1/10)*canvas.height) {
 				wallPositionY[loop] =  canvas.height - (1/10)*canvas.height;
-				wallVelocityX[loop] =  (-1/4)*wallVelocityX[loop];
 				wallVelocityY[loop] =  (-1/4)*wallVelocityY[loop];
 			}
 			else if (wallPositionY[loop] < 0) {
 				wallPositionY[loop] =  0;
-				wallVelocityX[loop] =  (-1/4)*wallVelocityX[loop];
 				wallVelocityY[loop] =  (-1/4)*wallVelocityY[loop];
 			}
 			
@@ -555,7 +551,7 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
 				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
 					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
-						wallPositionX[loopFour] = canvas.height/20*(Math.floor(wallPositionX[loopFour]/canvas.width/20));
+						wallPositionX[loopFour] = canvas.width/20*(Math.floor(wallPositionX[loopFour]/canvas.width/20));
 						wallPositionX[loopThree] = canvas.width/20*(Math.floor(wallPositionX[loopThree]/canvas.width/20));
 					}
 				}
