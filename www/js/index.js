@@ -323,8 +323,7 @@ function render() {
 	// Check to see if Player wins
 	if ( (playerPositionX[1] < playerPositionX[0] + canvas.width/30 && playerPositionX[1] > playerPositionX[0] - canvas.width/30) && (playerPositionY[1] < playerPositionY[0] + canvas.height/15 && playerPositionY[1] > playerPositionY[0] - canvas.height/15) ) {
 		alert ("GOALLLLLLL!!!!!!!");
-		playerPositionX[0] = canvas.width - playerPositionX[0];
-		playerPositionY[0] = canvas.height - playerPositionY[0];
+		location.reload(); // Reloads page
 	}
 	
 	
@@ -373,12 +372,7 @@ function render() {
 					enemyPositionY[loop] = canvas.height - enemyPositionY[loop];	
 					if (loopTwo == 1) {
 						alert ("You are Dead");
-						playerPositionX[loopTwo] = 0;
-						playerPositionY[loopTwo] = 0;
-						playerVelocityX = 0;
-						playerVelocityY = 0;
-						playerAccelerationX = 0;
-						playerAccelerationY = 0;
+						location.reload(); // Reloads page
 					}
 				}
 			}
@@ -535,16 +529,8 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			if (touch.pageX < wallPositionX[loopThree] + 2*canvas.width/20 && touch.pageX > wallPositionX[loopThree] - canvas.width/20 && touch.pageY < wallPositionY[loopThree] + 2*canvas.height/10 && touch.pageY > wallPositionY[loopThree]  - canvas.height/10) {	
 				wallPositionX[loopThree] = touch.pageX;	
 			}
-		}
-
-		
-		// wallRotatedArrowTouch
-		if (wallDefaultType[loopThree] == 9 && breaker == 0) {
-			if (touch.pageX < wallPositionX[loopThree] + 2*canvas.width/20 && touch.pageX > wallPositionX[loopThree] - canvas.width/20 && touch.pageY < wallPositionY[loopThree] + 2*canvas.height/10 && touch.pageY > wallPositionY[loopThree]  - canvas.height/10) {	
-				wallPositionY[loopThree] = touch.pageY;	
-			}
-		}
-		
+			
+	
 			// IF Player/Goal hits Wall.		
 			for(loopFour = 0; loopFour < playerPositionX.length; loopFour+=1) {
 				if ( (playerPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && playerPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (playerPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && playerPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
@@ -573,13 +559,61 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
 				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
 					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
+						wallPositionX[loopFour] = wallPositionX[loopFour] - (1/2)*wallVelocityX[loopFour];
+						wallPositionY[loopFour] = wallPositionY[loopFour] - (1/2)*wallVelocityY[loopFour];
+						wallVelocityX[loopFour] = (-1/4)*wallVelocityX[loopFour];
+						wallVelocityY[loopFour] = (-1/4)*wallVelocityY[loopFour];
+						wallPositionX[loopThree] = wallPositionX[loopThree] + canvas.width/20*((wallPositionX[loopThree] - wallPositionX[loopFour])/Math.abs(wallPositionX[loopThree] - wallPositionX[loopFour]));
+					}
+				}
+			}
+		}
+
+		
+		// wallRotatedArrowTouch
+		if (wallDefaultType[loopThree] == 9 && breaker == 0) {
+			if (touch.pageX < wallPositionX[loopThree] + 2*canvas.width/20 && touch.pageX > wallPositionX[loopThree] - canvas.width/20 && touch.pageY < wallPositionY[loopThree] + 2*canvas.height/10 && touch.pageY > wallPositionY[loopThree]  - canvas.height/10) {	
+				wallPositionY[loopThree] = touch.pageY;	
+			}
+			
+	
+			// IF Player/Goal hits Wall.		
+			for(loopFour = 0; loopFour < playerPositionX.length; loopFour+=1) {
+				if ( (playerPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && playerPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (playerPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && playerPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
+					playerPositionX[loopFour] = playerPositionX[loopFour] - (1/2)*playerVelocityX;
+					playerPositionY[loopFour] = playerPositionY[loopFour] - (1/2)*playerVelocityY;
+					playerVelocityX = (-1/2)*playerVelocityX;
+					playerVelocityY = (-1/2)*playerVelocityY;	
+					wallPositionY[loopThree] = wallPositionY[loopThree] + canvas.width/20*((wallPositionY[loopThree] - playerPositionY[loopFour])/Math.abs(wallPositionY[loopThree] - playerPositionY[loopFour]));
+				}		
+			}
+			
+			
+			// IF Enemy hits Wall.
+			for(loopFour = 0; loopFour < enemyType.length; loopFour+=1) {		
+				if ( (enemyPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && enemyPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (enemyPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && enemyPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) && (enemyType[loopFour] == 2 || enemyType[loopFour] == 3)) {
+					enemyPositionX[loopFour] = enemyPositionX[loopFour] - (1/2)*enemyVelocityX[loopFour];
+					enemyPositionY[loopFour] = enemyPositionY[loopFour] - (1/2)*enemyVelocityY[loopFour];
+					enemyVelocityX[loopFour] = (-1/2)*enemyVelocityX[loopFour];
+					enemyVelocityY[loopFour] = (-1/2)*enemyVelocityY[loopFour];
+					wallPositionY[loopThree] = wallPositionY[loopThree] + canvas.width/20*((wallPositionY[loopThree] - enemyPositionY[loopFour])/Math.abs(wallPositionY[loopThree] - enemyPositionY[loopFour]));	
+				}		
+			}
+			
+			
+			// IF Wall hits Wall.	
+			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
+				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
+					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
 						wallPositionX[loopThree] = wallPositionX[loopThree] - (1/2)*wallVelocityX[loopThree];
 						wallPositionY[loopThree] = wallPositionY[loopThree] - (1/2)*wallVelocityY[loopThree];
 						wallVelocityX[loopThree] = (-1/4)*wallVelocityX[loopThree];
 						wallVelocityY[loopThree] = (-1/4)*wallVelocityY[loopThree];
+						wallPositionY[loopThree] = wallPositionY[loopThree] + canvas.width/20*((wallPositionY[loopThree] - wallPositionY[loopFour])/Math.abs(wallPositionY[loopThree] - wallPositionY[loopFour]));
 					}
 				}
 			}
+		}
 	}
 });
 window.addEventListener("touchend", function wallArrowTouchEnd(event) {
