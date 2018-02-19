@@ -563,12 +563,12 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			
 			// IF Wall hits Wall.	
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
-				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loop) {
-					if ( (wallPositionX[loopFour] < wallPositionX[loop] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loop] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loop] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loop] - canvas.height/10) ) {
-						wallPositionX[loop] = wallPositionX[loop] - (1/2)*wallVelocityX[loop];
-						wallPositionY[loop] = wallPositionY[loop] - (1/2)*wallVelocityY[loop];
-						wallVelocityX[loop] = (-1/4)*wallVelocityX[loop];
-						wallVelocityY[loop] = (-1/4)*wallVelocityY[loop];
+				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
+					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
+						wallPositionX[loopThree] = wallPositionX[loopThree] - (1/2)*wallVelocityX[loopThree];
+						wallPositionY[loopThree] = wallPositionY[loopThree] - (1/2)*wallVelocityY[loopThree];
+						wallVelocityX[loopThree] = (-1/4)*wallVelocityX[loopThree];
+						wallVelocityY[loopThree] = (-1/4)*wallVelocityY[loopThree];
 					}
 				}
 			}
@@ -608,12 +608,12 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			
 			// IF Wall hits Wall.	
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
-				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loop) {
-					if ( (wallPositionX[loopFour] < wallPositionX[loop] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loop] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loop] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loop] - canvas.height/10) ) {
-						wallPositionX[loop] = wallPositionX[loop] - (1/2)*wallVelocityX[loop];
-						wallPositionY[loop] = wallPositionY[loop] - (1/2)*wallVelocityY[loop];
-						wallVelocityX[loop] = (-1/4)*wallVelocityX[loop];
-						wallVelocityY[loop] = (-1/4)*wallVelocityY[loop];
+				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
+					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
+						wallPositionX[loopThree] = wallPositionX[loopThree] - (1/2)*wallVelocityX[loopThree];
+						wallPositionY[loopThree] = wallPositionY[loopThree] - (1/2)*wallVelocityY[loopThree];
+						wallVelocityX[loopThree] = (-1/4)*wallVelocityX[loopThree];
+						wallVelocityY[loopThree] = (-1/4)*wallVelocityY[loopThree];
 					}
 				}
 			}
