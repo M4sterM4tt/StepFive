@@ -559,11 +559,8 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
 				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
 					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
-						wallPositionX[loopFour] = wallPositionX[loopFour] - (1/2)*wallVelocityX[loopFour];
-						wallPositionY[loopFour] = wallPositionY[loopFour] - (1/2)*wallVelocityY[loopFour];
-						wallVelocityX[loopFour] = (-1/4)*wallVelocityX[loopFour];
-						wallVelocityY[loopFour] = (-1/4)*wallVelocityY[loopFour];
-						wallPositionX[loopThree] = wallPositionX[loopThree] + canvas.width/20*((wallPositionX[loopThree] - wallPositionX[loopFour])/Math.abs(wallPositionX[loopThree] - wallPositionX[loopFour]));
+						wallPositionY[loopFour] = Math.floor(wallPositionY[loopFour]/canvas.width)*((wallPositionY[loopFour] - wallPositionY[loopThree])/Math.abs(wallPositionY[loopFour] - wallPositionY[loopThree]));
+						wallPositionY[loopThree] = Math.floor(wallPositionY[loopThree]/canvas.width)*((wallPositionY[loopThree] - wallPositionY[loopFour])/Math.abs(wallPositionY[loopThree] - wallPositionY[loopFour]));
 					}
 				}
 			}
@@ -605,11 +602,8 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 			for(loopFour = 0; loopFour < wallType.length; loopFour+=1) {
 				if (wallType[loopFour] >= 0 && wallType[loopFour] <= 9 && loopFour != loopThree) {
 					if ( (wallPositionX[loopFour] < wallPositionX[loopThree] + canvas.width/20 && wallPositionX[loopFour] > wallPositionX[loopThree] - canvas.width/20) && (wallPositionY[loopFour] < wallPositionY[loopThree] + canvas.height/10 && wallPositionY[loopFour] > wallPositionY[loopThree] - canvas.height/10) ) {
-						wallPositionX[loopThree] = wallPositionX[loopThree] - (1/2)*wallVelocityX[loopThree];
-						wallPositionY[loopThree] = wallPositionY[loopThree] - (1/2)*wallVelocityY[loopThree];
-						wallVelocityX[loopThree] = (-1/4)*wallVelocityX[loopThree];
-						wallVelocityY[loopThree] = (-1/4)*wallVelocityY[loopThree];
-						wallPositionY[loopThree] = wallPositionY[loopThree] + canvas.width/20*((wallPositionY[loopThree] - wallPositionY[loopFour])/Math.abs(wallPositionY[loopThree] - wallPositionY[loopFour]));
+						wallPositionY[loopFour] = Math.floor(wallPositionY[loopFour]/canvas.width)*((wallPositionY[loopFour] - wallPositionY[loopThree])/Math.abs(wallPositionY[loopFour] - wallPositionY[loopThree]));
+						wallPositionY[loopThree] = Math.floor(wallPositionY[loopThree]/canvas.width)*((wallPositionY[loopThree] - wallPositionY[loopFour])/Math.abs(wallPositionY[loopThree] - wallPositionY[loopFour]));
 					}
 				}
 			}
