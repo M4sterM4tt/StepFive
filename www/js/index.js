@@ -437,19 +437,19 @@ function render() {
 					
 					
 					if (playerPositionX[loopTwo] > wallPositionX[loop]) {
-						playerPositionX[loopTwo] = (canvas.width/20)*(Math.floor(wallPositionX[loopFour]/(canvas.width/20)))
+						playerPositionX[loopTwo] = (canvas.width/20)*(Math.floor(playerPositionX[loopTwo]/(canvas.width/20)))
 						playerVelocityX = (-1/4)*playerVelocityX;
 					}
 					else if (playerPositionX[loopTwo] < wallPositionX[loop]) {
-						playerPositionX[loopTwo] =  (canvas.width/20)*(Math.ceil(wallPositionX[loopFour]/(canvas.width/20)))
+						playerPositionX[loopTwo] =  (canvas.width/20)*(Math.ceil(playerPositionX[loopTwo]/(canvas.width/20)))
 						playerVelocityX = (-1/4)*playerVelocityX;
 					}
 					if (playerPositionY[loopTwo] > wallPositionY[loop]) {
-						playerPositionY[loopTwo] = (canvas.heigth/20)*(Math.floor(wallPositionX[loopFour]/(canvas.width/20)))
+						playerPositionY[loopTwo] = (canvas.heigth/20)*(Math.floor(playerPositionY[loopTwo]/(canvas.width/20)))
 						playerVelocityY = (-1/4)*playerVelocityY;
 					}
 					else if (playerPositionY[loopTwo] > wallPositionY[loop]) {
-						playerPositionY[loopTwo] = (canvas.heigth/20)*(Math.ceil(wallPositionX[loopFour]/(canvas.width/20)))
+						playerPositionY[loopTwo] = (canvas.heigth/20)*(Math.ceil(playerPositionY[loopTwo]/(canvas.width/20)))
 						playerVelocityY = (-1/4)*playerVelocityY;
 						
 						
