@@ -445,11 +445,11 @@ function render() {
 						playerVelocityX = (-1/4)*playerVelocityX;
 					}
 					if (playerPositionY[loopTwo] > wallPositionY[loop]) {
-						playerPositionY[loopTwo] = (canvas.heigth/10)*(Math.floor(playerPositionY[loopTwo]/(canvas.heigth/10)))
+						playerPositionY[loopTwo] = (canvas.height/10)*(Math.floor(playerPositionY[loopTwo]/(canvas.height/10)))
 						playerVelocityY = (-1/4)*playerVelocityY;
 					}
 					else if (playerPositionY[loopTwo] > wallPositionY[loop]) {
-						playerPositionY[loopTwo] = (canvas.heigth/10)*(Math.ceil(playerPositionY[loopTwo]/(canvas.heigth/10)))
+						playerPositionY[loopTwo] = (canvas.height/10)*(Math.ceil(playerPositionY[loopTwo]/(canvas.height/10)))
 						playerVelocityY = (-1/4)*playerVelocityY;
 						
 						
