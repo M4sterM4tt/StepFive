@@ -103,7 +103,7 @@ window.onload = function() {
 	// Wall Variables
 	// First Set of Base, Second Set of Base, Third Set of Base, One of each other Wall, Final Set of Base.
 	wallType = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     1,2,3,4,5,6,8,7,9];
-	wallDefaultType = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     1,2,3,4,5,6,8,7,9];
+	wallDefaultType = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     1,2,3,4,5,6,7,8,9];
 	wallPositionX = [canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,     canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,     canvas.width - canvas.width/20,canvas.width - 2*canvas.width/20,canvas.width - 3*canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width - 4*canvas.width/20,     4*canvas.width/20,4*canvas.width/20,8*canvas.width/20,5*canvas.width/20,canvas.width/2 - canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width/2 + canvas.width/20,canvas.width - 4*canvas.width/20,4*canvas.width/20];
 	wallPositionY = [0,canvas.height/10,2*canvas.height/10,3*canvas.height/10,4*canvas.height/10,5*canvas.height/10,6*canvas.height/10,     canvas.height - canvas.height/10,canvas.height - 2*canvas.height/10,canvas.height - 3*canvas.height/10,canvas.height - 4*canvas.height/10,canvas.height - 5*canvas.height/10,canvas.height - 6*canvas.height/10,canvas.height - 7*canvas.height/10,     canvas.height/2 - canvas.height/10,canvas.height/2 - canvas.height/10,canvas.height/2 - canvas.height/10,canvas.height/2 - canvas.height/10,canvas.height/2,canvas.height/2 + canvas.height/10,canvas.height/2 + 2*canvas.height/10,     3*canvas.height/10,6*canvas.height/10,6*canvas.height/10,5*canvas.height/10,0,8*canvas.height/10,0,0,0];                                          
 	wallVelocityX = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,0,0];
@@ -296,23 +296,23 @@ function render() {
 	
 	
 	// Check to prevent Player from leaving the Canvas
-	if (playerPositionX[1] >  canvas.width - (1/20)*canvas.width) {
-		playerPositionX[1] =  canvas.width - (1/20)*canvas.width;	
-		playerVelocityX =  (-1/4)*playerVelocityX;
+	if (playerPositionX[1] > canvas.width - (1/20)*canvas.width) {
+		playerPositionX[1] = canvas.width - (1/20)*canvas.width;	
+		playerVelocityX = (-1/4)*playerVelocityX;
 	}
 	else if (playerPositionX[1] < 0) {
-		playerPositionX[1] =  0;
-		playerVelocityX =  (-1/4)*playerVelocityX;
+		playerPositionX[1] = 0;
+		playerVelocityX = (-1/4)*playerVelocityX;
 	}
 	
 	
-	if (playerPositionY[1] >  canvas.height - (1/10)*canvas.height) {
-		playerPositionY[1] =  canvas.height - (1/10)*canvas.height;
-		playerVelocityY =  (-1/4)*playerVelocityY;
+	if (playerPositionY[1] > canvas.height - (1/10)*canvas.height) {
+		playerPositionY[1] = canvas.height - (1/10)*canvas.height;
+		playerVelocityY = (-1/4)*playerVelocityY;
 	}
 	else if (playerPositionY[1] < 0) {
-		playerPositionY[1] =  0;
-		playerVelocityY =  (-1/4)*playerVelocityY;
+		playerPositionY[1] = 0;
+		playerVelocityY = (-1/4)*playerVelocityY;
 	}
 	
 	
@@ -434,14 +434,26 @@ function render() {
 			// IF Player/Goal hits Wall.	
 			for(loopTwo = 0; loopTwo < playerPositionX.length; loopTwo+=1) {
 				if ( (playerPositionX[loopTwo] < wallPositionX[loop] + canvas.width/20 && playerPositionX[loopTwo] > wallPositionX[loop] - canvas.width/20) && (playerPositionY[loopTwo] < wallPositionY[loop] + canvas.height/10 && playerPositionY[loopTwo] > wallPositionY[loop] - canvas.height/10) ) {
-					playerPositionX[loopTwo] = playerPositionX[loopTwo] - (1/2)*playerVelocityX;
-					playerPositionY[loopTwo] = playerPositionY[loopTwo] - (1/2)*playerVelocityY;
-					playerVelocityX = (-1/2)*playerVelocityX;
-					playerVelocityY = (-1/2)*playerVelocityY;	
-					wallPositionX[loop] = wallPositionX[loop] - (1/2)*wallVelocityX[loop];
-					wallPositionY[loop] = wallPositionY[loop] - (1/2)*wallVelocityY[loop];
-					wallVelocityX[loop] = (-1/4)*wallVelocityX[loop];
-					wallVelocityY[loop] = (-1/4)*wallVelocityY[loop];
+					
+					
+					if (playerPositionX[loopTwo] > wallPositionX[loop]) {
+						playerPositionX[loopTwo] = wallPositionX[loop] + canvas.width/20;	
+						playerVelocityX = (-1/4)*playerVelocityX;
+					}
+					else if (playerPositionX[loopTwo] < wallPositionX[loop]) {
+						playerPositionX[loopTwo] =  wallPositionX[loop] - canvas.width/20;
+						playerVelocityX = (-1/4)*playerVelocityX;
+					}
+					if (playerPositionY[loopTwo] > wallPositionY[loop]) {
+						playerPositionY[loopTwo] = wallPositionY[loop] + canvas.height/10;
+						playerVelocityY = (-1/4)*playerVelocityY;
+					}
+					else if (playerPositionY[loopTwo] > wallPositionY[loop]) {
+						playerPositionY[loopTwo] = wallPositionY[loop] - canvas.height/10;
+						playerVelocityY = (-1/4)*playerVelocityY;
+						
+						
+					}
 				}
 			}
 			
