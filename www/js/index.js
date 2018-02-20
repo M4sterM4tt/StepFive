@@ -184,7 +184,7 @@ function restart() {
 
 // onResume Function
 function onResume() {
-	// pause = false;
+	pause = false;
 }
 
 
@@ -370,6 +370,7 @@ function render() {
 		
 		// Check to see if Player wins
 		if ( (playerPositionX[1] < playerPositionX[0] + canvas.width/30 && playerPositionX[1] > playerPositionX[0] - canvas.width/30) && (playerPositionY[1] < playerPositionY[0] + canvas.height/15 && playerPositionY[1] > playerPositionY[0] - canvas.height/15) ) {
+			pause = true;
 			restart();
 		}
 		
@@ -413,6 +414,7 @@ function render() {
 					if ( (playerPositionX[loopTwo] < enemyPositionX[loop] + canvas.width/30 && playerPositionX[loopTwo] > enemyPositionX[loop] - canvas.width/30) && (playerPositionY[loopTwo] < enemyPositionY[loop] + canvas.height/15 && playerPositionY[loopTwo] > enemyPositionY[loop] - canvas.height/15) ) {	
 						if (loopTwo == 1) {
 							restart();
+							pause = true;
 						}
 					}
 				}
