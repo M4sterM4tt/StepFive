@@ -162,6 +162,7 @@ window.onload = function() {
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------	2
 
 
+// ready Function
 function onDeviceReady() {
     document.addEventListener("pause", onPause, false);
     document.addEventListener("resume", onResume, false);
@@ -169,26 +170,31 @@ function onDeviceReady() {
 }
 
 
+// onPause Function
 function onPause() {
 	pause = true;
 }
 
 
+// unPause Function
 function unPause() {
 	pause = false;
 }
 
 
+// restart Function
 function restart() {
 	location.reload(); // Reloads page
 }
 
 
+// onResume Function
 function onResume() {
-	$.mobile.changePage("pagetwo", {transition: "slideup", changeHash: false });
+	$.mobile.changePage("pagetwo", {transition: "slideup", changeHash: false }); // Goes to Page two
 }
 
 
+// onMenuKeyDown Function
 function onMenuKeyDown() {
 	pause = true;
 }
