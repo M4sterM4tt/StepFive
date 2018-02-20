@@ -71,7 +71,6 @@ var loopFour;
 
 window.onload = function() {
 	
-	
 	// Events
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
@@ -175,8 +174,18 @@ function onPause() {
 }
 
 
-function onResume() {
+function unPause() {
 	pause = false;
+}
+
+
+function restart() {
+	location.reload(); // Reloads page
+}
+
+
+function onResume() {
+	document.location.href = pagetwo;
 }
 
 
