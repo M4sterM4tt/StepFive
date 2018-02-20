@@ -185,7 +185,7 @@ function restart() {
 
 
 function onResume() {
-	document.location.href = pagetwo;
+	$.mobile.changePage("pagetwo", {transition: "slideup", changeHash: false });
 }
 
 
