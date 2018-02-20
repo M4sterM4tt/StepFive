@@ -410,9 +410,7 @@ function render() {
 
 				// IF Enemy hits Player/Goal.
 				for(loopTwo = 0; loopTwo < playerPositionX.length; loopTwo+=1) {
-					if ( (playerPositionX[loopTwo] < enemyPositionX[loop] + canvas.width/30 && playerPositionX[loopTwo] > enemyPositionX[loop] - canvas.width/30) && (playerPositionY[loopTwo] < enemyPositionY[loop] + canvas.height/15 && playerPositionY[loopTwo] > enemyPositionY[loop] - canvas.height/15) ) {
-						enemyPositionX[loop] = canvas.width - enemyPositionX[loop];
-						enemyPositionY[loop] = canvas.height - enemyPositionY[loop];	
+					if ( (playerPositionX[loopTwo] < enemyPositionX[loop] + canvas.width/30 && playerPositionX[loopTwo] > enemyPositionX[loop] - canvas.width/30) && (playerPositionY[loopTwo] < enemyPositionY[loop] + canvas.height/15 && playerPositionY[loopTwo] > enemyPositionY[loop] - canvas.height/15) ) {	
 						if (loopTwo == 1) {
 							restart();
 						}
@@ -571,7 +569,7 @@ window.addEventListener("touchmove", function wallArrowTouchMove(event) {
 
 			// wallArrowTouch
 			if (wallDefaultType[loopThree] == 3 && breaker == 0) {
-				if (touch.pageX < wallPositionX[loopThree] + (3/2)*canvas.width/20 && touch.pageX > wallPositionX[loopThree] - (3/4)*canvas.width/20 && touch.pageY < wallPositionY[loopThree] + (3/2)*canvas.height/10 && touch.pageY > wallPositionY[loopThree]  - (3/4)*canvas.height/10) {	
+				if (touch.pageX < wallPositionX[loopThree] + canvas.width/20 && touch.pageX > wallPositionX[loopThree] - (1/2)*canvas.width/20 && touch.pageY < wallPositionY[loopThree] + 2*canvas.height/10 && touch.pageY > wallPositionY[loopThree]  - canvas.height/10) {	
 					wallPositionX[loopThree] = touch.pageX;	
 				}
 				
