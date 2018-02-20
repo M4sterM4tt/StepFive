@@ -176,21 +176,15 @@ function onPause() {
 }
 
 
-// unPause Function
-function unPause() {
-	pause = false;
-}
-
-
 // restart Function
 function restart() {
-	location.reload(); // Reloads page
+	location.reload();
 }
 
 
 // onResume Function
 function onResume() {
-	$.mobile.changePage("pagetwo", {transition: "slideup", changeHash: false }); // Goes to Page two
+	// pause = false;
 }
 
 
@@ -376,8 +370,7 @@ function render() {
 		
 		// Check to see if Player wins
 		if ( (playerPositionX[1] < playerPositionX[0] + canvas.width/30 && playerPositionX[1] > playerPositionX[0] - canvas.width/30) && (playerPositionY[1] < playerPositionY[0] + canvas.height/15 && playerPositionY[1] > playerPositionY[0] - canvas.height/15) ) {
-			alert ("GOALLLLLLL!!!!!!!");
-			location.reload(); // Reloads page
+			restart();
 		}
 		
 		
@@ -421,8 +414,7 @@ function render() {
 						enemyPositionX[loop] = canvas.width - enemyPositionX[loop];
 						enemyPositionY[loop] = canvas.height - enemyPositionY[loop];	
 						if (loopTwo == 1) {
-							alert ("You are Dead");
-							location.reload(); // Reloads page
+							restart();
 						}
 					}
 				}
